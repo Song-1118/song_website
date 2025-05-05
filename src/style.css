@@ -1,0 +1,92 @@
+/* 基础样式 */
+.title-404 {
+    /* 响应式字体大小（移动端优先） */
+    font-size: clamp(3rem, 15vw, 6rem);
+    font-weight: 700; /* 适当降低字重 */
+
+    /* 颜色优化 */
+    color: #ff0055;
+
+    /* 阴影优化 */
+    text-shadow:
+            2px 2px 0px #00f7ff,
+            -1px -1px 0px #ff00ff;
+
+    /* 布局约束 */
+    margin: 0 auto;
+    max-width: 90vw;
+    overflow: hidden;
+    text-align: center;
+
+    /* 移动端性能优化 */
+    will-change: transform;
+}
+
+/* 移动端专用动画 */
+@media (hover: none) and (pointer: coarse) {
+    .title-404 {
+        animation: mobileGlitch 3s ease-in-out infinite;
+    }
+}
+
+/* 桌面端保留原始动画 */
+@media (hover: hover) and (pointer: fine) {
+    .title-404 {
+        animation: glitch 2s infinite;
+    }
+}
+
+/* 移动端动画优化 */
+@keyframes mobileGlitch {
+    0%, 100% {
+        transform: translate(0);
+        text-shadow:
+                2px 2px 0px #00f7ff,
+                -1px -1px 0px #ff00ff;
+    }
+    25% {
+        transform: translate(-2px, 2px);
+        text-shadow:
+                3px 3px 2px #00f7ff,
+                -2px -2px 2px #ff00ff;
+    }
+    50% {
+        transform: translate(2px, -2px);
+        text-shadow:
+                1px 1px 1px #00f7ff,
+                -3px -3px 1px #ff00ff;
+    }
+    75% {
+        transform: translate(-1px, 1px);
+        text-shadow:
+                4px 4px 3px #00f7ff,
+                -4px -4px 3px #ff00ff;
+    }
+}
+
+/* 桌面端原始动画 */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-4px, 4px); }
+    40% { transform: translate(-4px, -4px); }
+    60% { transform: translate(4px, 4px); }
+    80% { transform: translate(4px, -4px); }
+    100% { transform: translate(0); }
+}
+
+/* 容器响应式适配 */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* 移动端横屏适配 */
+@media (orientation: landscape) {
+    .title-404 {
+        font-size: clamp(2.5rem, 10vh, 4rem);
+    }
+}
